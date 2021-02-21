@@ -139,7 +139,7 @@ if the superset did not show up on port 8088, you can debug in the following way
    
  * What about worker containers which leverage celery ?
    in this first version, I did not add worker container
-   for local development, we probably don't need it.
-   I will add it later for as optional container later.   
+   for local development, we probably don't need it for initial development
+   I will add it later for as optional container if I need the need.   
          
    
