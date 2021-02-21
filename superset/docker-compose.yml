@@ -1,0 +1,67 @@
+version: '3'
+services:
+  redis:
+    image: redis:3.2
+    container_name: superset_cache
+    restart: unless-stopped
+    ports:
+      - ${REDIS_PORT:-6379}:6379
+    volumes:
+      - redis:/data
+
+  db:
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    image: mysql:5.7
+    container_name: superset_db
+    restart: unless-stopped
+    environment:
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: superset
+      MYSQL_PASSWORD: superset
+      MYSQL_ROOT_PASSWORD: superset
+      MYSQL_USER: superset
+
+      DATABASE_PORT: 3306
+      DATABASE_DIALECT: mysql
+      DATABASE_DB: superset
+      DATABASE_PASSWORD: superset
+      DATABASE_USER: superset
+    volumes:
+      - db_home:/tmp/mysql5
+
+  superset:
+    environment:
+      AUTH_ADMIN_PASSWORD: ${AUTH_ADMIN_PASSWORD:-admin}
+      AUTH_ADMIN_USER: ${AUTH_ADMIN_USER:-admin}
+      AUTH_TYPE: ${AUTH_TYPE:-AUTH_DB}
+      AWS_DEFAULT_REGION: us-west-2
+      AWS_REGION: us-west-2
+      DSE_DEPLOY: ${DSE_DEPLOY_ENV:-development}
+      DSE_NO_PAGERDUTY: 1
+      DSE_VAULT_BASE_URI: ${DSE_VAULT_BASE_URI:-s3://teamdse-dev-vault/}
+      SUPERSET_PORT: ${SUPERSET_PORT:-8088}
+      SUPERSET_ENABLE_PUBLISH: ${SUPERSET_ENABLE_PUBLISH:-true}
+      GUNICORN_ARGS: ${GUNICORN_ARGS:- -w 2}
+      SUPERSET_CONFIG_FILE: ${SUPERSET_CONFIG_FILE:-superset_config.conf}
+      SUPERSET_LOAD_EXAMPLES: ${SUPERSET_LOAD_EXAMPLES:-yes}
+    build:
+      context: ""
+      args:
+        SUPERSET_VERSION: ${SUPERSET_VERSION:-0.34.0}
+      dockerfile: Dockerfile
+    image: ${IMAGE_TAG:-superset:latest}
+    container_name: ${CONTAINER_NAME:-superset_dev}
+    restart: unless-stopped
+    volumes:
+      - superset_home:/opt/superset
+
+    ports:
+      -  ${SUPERSET_PORT:-8088}:8088
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  db_home:
+  redis:
+  superset_home:
