@@ -41,12 +41,12 @@ You still need the same prerequisites before you can use docker installed
 
 ## Build docker image
 
-To run the container, simply run:
+To build the docker image, simply run:
 
 ```bash
 docker-compose build  
 ```
-This will build the docker image for different modules
+This will genearte the docker images for different containers. In docker-compose file, we have three containers : redis, db and superset with corresponding containers names: superset_cache, superset_db and superset_dev 
 
 ```bash
 docker-compose up
