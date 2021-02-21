@@ -1,5 +1,3 @@
-#FROM python36:1.1.0
-#FROM python:3.7.9
 FROM python:3.6.12
 
 # Superset version
