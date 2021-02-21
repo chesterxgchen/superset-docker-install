@@ -24,14 +24,14 @@ Apache Superset project has docker build script files that allows one to build d
 [Apache superset Docker] https://github.com/apache/superset/tree/master/docker
 But many times, the image generated show blank page. For first time users, this is not really a good experience.  
 The Apache Superset docker-compose.yaml file contains several docker containers
-including node, worker, db (postgres), cache (redis) and etc. The depends on the node.js seems to be unnecessary 
-and make it easier to break. We create an alternative DockerFile and docker-compose file 
+including node, worker, db (postgres), cache (redis) and etc. The dependency on the node.js seems to be unnecessary 
+and make it easier to break. I created an alternative Dockerfile and docker-compose file 
 with PyPi superset package as base. 
 
 This has the following benefits: 
 * no dependency on Node.js, 
-* no need to clone Apache Superset Source code. 
-* once can quickly switch between different versions available from PyPI 
+* no need to clone Apache Superset Source code
+* once can quickly switch between different versions of superset available from PyPI 
    
 You still need the same prerequisites before you can use docker installed 
 ## Prerequisites
