@@ -24,14 +24,14 @@ Apache Superset project has docker build script files that allows one to build d
 [Apache superset Docker] https://github.com/apache/superset/tree/master/docker
 But many times, the image generated show blank page. For first time users, this is not really a good experience.  
 The Apache Superset docker-compose.yaml file contains several docker containers
-including node, worker, db (postgres), cache (redis) and etc. The depends on the node.js seems to be unnecessary 
-and make it easier to break. We create an alternative DockerFile and docker-compose file 
+including node, worker, db (postgres), cache (redis) and etc. The dependency on the node.js seems to be unnecessary 
+and make it easier to break. I created an alternative Dockerfile and docker-compose file 
 with PyPi superset package as base. 
 
 This has the following benefits: 
 * no dependency on Node.js, 
-* no need to clone Apache Superset Source code. 
-* once can quickly switch between different versions available from PyPI 
+* no need to clone Apache Superset Source code
+* once can quickly switch between different versions of superset available from PyPI 
    
 You still need the same prerequisites before you can use docker installed 
 ## Prerequisites
@@ -41,12 +41,12 @@ You still need the same prerequisites before you can use docker installed
 
 ## Build docker image
 
-To run the container, simply run:
+To build the docker image, simply run:
 
 ```bash
 docker-compose build  
 ```
-This will build the docker image for different modules
+This will genearte the docker images for different containers. In docker-compose file, we have three containers : redis, db and superset with corresponding containers names: superset_cache, superset_db and superset_dev 
 
 ```bash
 docker-compose up
@@ -139,7 +139,7 @@ if the superset did not show up on port 8088, you can debug in the following way
    
  * What about worker containers which leverage celery ?
    in this first version, I did not add worker container
-   for local development, we probably don't need it.
-   I will add it later for as optional container later.   
+   for local development, we probably don't need it for initial development
+   I will add it later if I see the need.   
          
    
