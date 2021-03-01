@@ -36,9 +36,6 @@ services:
       AUTH_TYPE: ${AUTH_TYPE:-AUTH_DB}
       AWS_DEFAULT_REGION: us-west-2
       AWS_REGION: us-west-2
-      DSE_DEPLOY: ${DSE_DEPLOY_ENV:-development}
-      DSE_NO_PAGERDUTY: 1
-      DSE_VAULT_BASE_URI: ${DSE_VAULT_BASE_URI:-s3://teamdse-dev-vault/}
       SUPERSET_PORT: ${SUPERSET_PORT:-8088}
       SUPERSET_ENABLE_PUBLISH: ${SUPERSET_ENABLE_PUBLISH:-true}
       GUNICORN_ARGS: ${GUNICORN_ARGS:- -w 2}

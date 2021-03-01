@@ -47,8 +47,15 @@ AUTH_USER_REGISTRATION_ROLE = "Gamma"
 
 AUTH_LDAP_USE_TLS = False
 
+# The file upload folder, when using models with files
+UPLOAD_FOLDER = '/opt/superset/static/uploads/'
+
+# The image upload folder, when using models with images
+IMG_UPLOAD_FOLDER = '/opt/superset/static/uploads/'
+
 # Fix for "There was an issue fetching the favorite status of this dashboard"
 ENABLE_PROXY_FIX = True
 
 ENABLE_TIME_ROTATE = True
 FILENAME = os.path.join("/var/log/superset", "superset.log")
+
