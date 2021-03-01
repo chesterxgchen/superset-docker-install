@@ -49,9 +49,6 @@ services:
     image: ${IMAGE_TAG:-superset:latest}
     container_name: ${CONTAINER_NAME:-superset_dev}
     restart: unless-stopped
-    volumes:
-      - superset_home:/opt/superset
-
     ports:
       -  ${SUPERSET_PORT:-8088}:8088
     depends_on:
@@ -61,4 +58,3 @@ services:
 volumes:
   db_home:
   redis:
-  superset_home:
