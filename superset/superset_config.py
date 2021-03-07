@@ -16,6 +16,8 @@ def get_env_variable(var_name, default=None):
             raise EnvironmentError(error_msg)
 
 
+SQLALCHEMY_DATABASE_URI = 'mysql://superset:superset@db:3306/superset?charset=utf8mb4'
+
 SUPERSET_WEBSERVER_TIMEOUT = 90
 MAPBOX_API_KEY = os.getenv('MAPBOX_API_KEY', '')
 
@@ -58,4 +60,3 @@ ENABLE_PROXY_FIX = True
 
 ENABLE_TIME_ROTATE = True
 FILENAME = os.path.join("/var/log/superset", "superset.log")
-

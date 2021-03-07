@@ -11,7 +11,7 @@ services:
 
   db:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    image: mysql:5.7
+    image: mysql:5
     container_name: superset_db
     restart: unless-stopped
     environment:
@@ -46,7 +46,7 @@ services:
       args:
         SUPERSET_VERSION: ${SUPERSET_VERSION:-0.34.0}
       dockerfile: Dockerfile
-    image: ${IMAGE_TAG:-superset:latest}
+    image: ${IMAGE_TAG:-superset:dev}
     container_name: ${CONTAINER_NAME:-superset_dev}
     restart: unless-stopped
     ports:
